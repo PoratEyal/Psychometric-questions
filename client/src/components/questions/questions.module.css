@@ -1,0 +1,60 @@
+/* src/components/questions/questions.module.css */
+.questionsContainer {
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+
+.questionCard {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  background-color: #fdfdfd;
+}
+
+.questionText {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.optionLabel {
+  display: block;
+  margin-bottom: 0.4rem;
+  cursor: pointer;
+}
+
+.optionLabel input[type="radio"] {
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.optionButton {
+  /* עיצוב רגיל לאופציה */
+  padding: 0.2rem 0.4rem;
+}
+
+.optionButtonCorrect {
+  background-color: #c8e6c9; /* ירוק בהיר */
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.optionButtonWrong {
+  background-color: #ffcdd2; /* אדום בהיר */
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.feedback {
+  margin-top: 0.5rem;
+}
+
+.correctText {
+  color: #2e7d32; /* ירוק */
+  font-weight: bold;
+}
+
+.wrongText {
+  color: #c62828; /* אדום */
+  font-weight: bold;
+}
