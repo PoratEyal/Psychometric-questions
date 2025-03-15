@@ -1,6 +1,6 @@
-// src/App.js
 import React, { useState } from 'react';
 import { OpenAI } from 'openai';
+import './App.css';
 
 import UserData from './components/userData/userData';
 import Questions from './components/questions/questions';
@@ -27,41 +27,44 @@ function App() {
   const functions = [
     {
       name: 'generate_psychometric_questions',
-      description: 'Return a list of psychometric questions in Hebrew, each with 4 multiple-choice options, and a correct answer index.',
+      description:
+        'Return a list of psychometric questions in Hebrew, each with 4 multiple-choice options, and a correct answer index.',
       parameters: {
         type: 'object',
         properties: {
           questions: {
             type: 'array',
-            description: 'An array of questions in Hebrew, each with text, 4 options, and the index of the correct option.',
+            description:
+              'An array of questions in Hebrew, each with text, 4 options, and the index of the correct option.',
             items: {
               type: 'object',
               properties: {
                 question_text: {
                   type: 'string',
-                  description: 'The text of the question (in Hebrew).'
+                  description: 'The text of the question (in Hebrew).',
                 },
                 options: {
                   type: 'array',
                   description: 'An array of 4 answer options (in Hebrew).',
                   items: {
-                    type: 'string'
+                    type: 'string',
                   },
                   minItems: 4,
-                  maxItems: 4
+                  maxItems: 4,
                 },
                 correct_option: {
                   type: 'number',
-                  description: 'The index (0-3) of the correct answer in the options array.'
-                }
+                  description:
+                    'The index (0-3) of the correct answer in the options array.',
+                },
               },
-              required: ['question_text', 'options', 'correct_option']
-            }
-          }
+              required: ['question_text', 'options', 'correct_option'],
+            },
+          },
         },
-        required: ['questions']
-      }
-    }
+        required: ['questions'],
+      },
+    },
   ];
 
   // פונקציה שמבקשת מהמודל להחזיר שאלות בעברית עם 4 אפשרויות + תשובה נכונה
@@ -110,8 +113,8 @@ function App() {
         ],
         functions,
         function_call: {
-          name: 'generate_psychometric_questions'
-        }
+          name: 'generate_psychometric_questions',
+        },
       });
 
       console.log('OpenAI raw response:', response);
@@ -155,9 +158,7 @@ function App() {
   };
 
   return (
-    <div style={{ padding: '1rem', direction: 'rtl', fontFamily: 'sans-serif' }}>
-      <h1>אפליקציית שאלות פסיכומטרי בעברית</h1>
-
+    <div className="app-container">
       {!isQuestionsReady && (
         <UserData
           topic={topic}
@@ -167,24 +168,21 @@ function App() {
           numberOfQuestions={numberOfQuestions}
           setNumberOfQuestions={setNumberOfQuestions}
           onGenerate={handleGenerateQuestions}
-        />
-      )}
-
-      {isQuestionsReady && (
-        <Questions
-          questions={questions}
           loading={loading}
-          error={error}
         />
       )}
 
-      {loading && <p>טוען...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-
       {isQuestionsReady && (
-        <button onClick={handleBack} style={{ marginTop: '1rem' }}>
-          חזרה לבחירת נושא
-        </button>
+        <>
+          <Questions
+            questions={questions}
+            loading={loading}
+            error={error}
+          />
+          <button onClick={handleBack} className="back-button">
+            חזרה לבחירת נושא
+          </button>
+        </>
       )}
     </div>
   );

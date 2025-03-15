@@ -1,4 +1,3 @@
-// src/components/userData/userData.js
 import React from 'react';
 import styles from './userData.module.css';
 
@@ -9,7 +8,8 @@ function UserData({
   setDifficulty,
   numberOfQuestions,
   setNumberOfQuestions,
-  onGenerate
+  onGenerate,
+  loading
 }) {
   return (
     <div className={styles.userDataContainer}>
@@ -63,8 +63,10 @@ function UserData({
         />
       </div>
 
-      {/* כפתור יצירה */}
-      <button onClick={onGenerate}>צור שאלות</button>
+      {/* כפתור יצירה עם אנימציית טעינה */}
+      <button onClick={onGenerate} disabled={loading}>
+        {loading ? <div className={styles.spinner}></div> : 'צור שאלות'}
+      </button>
     </div>
   );
 }
