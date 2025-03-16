@@ -3,6 +3,7 @@ html, body, #root {
   margin: 0;
   padding: 0;
   direction: rtl;
+  font-family: 'Assistant', sans-serif;
 }
 
 .app-container {
@@ -15,7 +16,6 @@ html, body, #root {
   padding: 0;
 }
 
-/* עיצוב כפתור חזרה */
 .back-button {
   background-color: #e74c3c;
   border: none;
